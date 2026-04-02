@@ -28,7 +28,7 @@ return {
 			local builtin = require("telescope.builtin")
 
 			-- keymaps (JetBrains-like workflow)
-			vim.keymap.set("n", "<C-p>", builtin.find_files)
+			vim.keymap.set("n", "<leader>p", builtin.find_files)
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep)
 		end,
 	},
