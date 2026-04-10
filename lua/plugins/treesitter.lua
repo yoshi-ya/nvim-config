@@ -10,7 +10,7 @@ return {
 			end
 
 			ts_configs.setup({
-				ensure_installed = { "python", "java", "lua", "bash", "json", "yaml", "javascript" },
+				ensure_installed = { "python", "java", "javadoc", "lua", "bash", "json", "yaml", "javascript", "typescript", "tsx", "regex", "dockerfile", "xml", "ini", "html", "gitignore", "angular" },
 				highlight = { enable = true },
 				indent = { enable = true },
 				incremental_selection = { enable = true },

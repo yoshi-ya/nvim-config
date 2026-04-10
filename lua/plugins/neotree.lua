@@ -9,7 +9,7 @@ return {
 		},
 
 		keys = {
-			{ "<leader>e", "<cmd>Neotree toggle<CR>", desc = "Toggle file tree" },
+			{ "<leader>1", "<cmd>Neotree toggle<CR>", desc = "Toggle file tree" },
 		},
 
 		config = function()
@@ -21,9 +21,8 @@ return {
 					},
 				},
 			})
-
-			vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>")
-			vim.keymap.set("n", "<leader><leader>", "<cmd>Neotree filesystem reveal left<CR>")
+			vim.keymap.set("n", "<leader>1", "<cmd>Neotree toggle<CR>")
+			vim.keymap.set("n", "<leader>e", "<cmd>Neotree filesystem reveal left<CR>")
 		end,
 	},
 }

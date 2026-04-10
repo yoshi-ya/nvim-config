@@ -3,4 +3,5 @@ vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set relativenumber")
 
+require("config.keymaps")
 require("config.lazy")

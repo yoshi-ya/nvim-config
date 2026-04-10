@@ -8,14 +8,24 @@ return {
 		opts = {
 			ensure_installed = {
 				"lua_ls",
-				"pyright"
+				"pyright",
+				"ts_ls",
+				"angularls",
+				"jsonls",
+				"jdtls",
+				"dockerls",
+				"docker_compose_language_service",
 			}
 		},
 	},
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+			vim.lsp.enable({ "lua_ls", "pyright", "ts_ls", "angularls", "jsonls", "jdtls", "dockerls", "docker_compose_language_service" })
+
+			vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, {})
+			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+			vim.keymap.set({"n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 		end
 	}
 }
