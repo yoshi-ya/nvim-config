@@ -1,15 +1,13 @@
 return {
 	'stevearc/conform.nvim',
 	event = { "BufReadPre", "BufNewFile" },
-	opts = {},
+
 	config = function()
 		local conform = require("conform")
-
 		conform.setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
 				python = { "isort", "black" },
-				rust = { "rustfmt", lsp_format = "fallback" },
 				javascript = { "prettier" },
 				javascriptreact = { "prettier" },
 				typescriptreact = { "prettier" },
