@@ -1,12 +1,15 @@
 return {
-	'nvim-lualine/lualine.nvim',
-	dependencies = { 'nvim-tree/nvim-web-devicons' },
+	"nvim-lualine/lualine.nvim",
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		"catppuccin/nvim",
+	},
 
 	config = function()
-		require('lualine').setup({
+		require("lualine").setup({
 			options = {
-				theme = 'dracula'
-			}
+				theme = "catppuccin-mocha",
+			},
 		})
-	end
+	end,
 }

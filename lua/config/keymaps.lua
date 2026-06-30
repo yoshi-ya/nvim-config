@@ -7,15 +7,14 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<Tab>", "<cmd>bnext<CR>", { silent = true })
 vim.keymap.set("n", "<S-Tab>", "<cmd>bprev<CR>", { silent = true })
 
--- ─── File Tree (NeoTree) ───────────────────────────────────────────────────────
-vim.keymap.set("n", "<leader>1", "<cmd>Neotree toggle<CR>", { desc = "Toggle file tree" })
-vim.keymap.set("n", "<leader>e", "<cmd>Neotree filesystem reveal left<CR>", { desc = "Reveal file in tree" })
+-- ─── File Tree (NeoTree) ── keymaps live in neotree.lua keys={} for lazy-loading
 
 -- ─── Telescope ────────────────────────────────────────────────────────────────
 vim.keymap.set("n", "<leader>p", function() require("telescope.builtin").find_files() end, { desc = "Find files" })
 vim.keymap.set("n", "<leader><leader>", function() require("telescope.builtin").live_grep() end, { desc = "Live grep" })
 vim.keymap.set("n", "<leader>fb", function() require("telescope.builtin").buffers() end, { desc = "Find buffers" })
 vim.keymap.set("n", "<leader>fh", function() require("telescope.builtin").help_tags() end, { desc = "Help tags" })
+vim.keymap.set("n", "<leader>ds", function() require("telescope.builtin").diagnostics() end, { desc = "Workspace diagnostics" })
 
 -- ─── Formatting (conform) ─────────────────────────────────────────────────────
 vim.keymap.set({ "n", "v" }, "<leader>f", function()
@@ -25,6 +24,9 @@ vim.keymap.set({ "n", "v" }, "<leader>f", function()
 		timeout_ms = 500,
 	})
 end, { desc = "Format file or selection" })
+
+-- ─── Buffer ───────────────────────────────────────────────────────────────────
+vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Close buffer" })
 
 -- ─── Linting ──────────────────────────────────────────────────────────────────
 vim.keymap.set("n", "<leader>l", function()
@@ -47,6 +49,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		map("n", "K", vim.lsp.buf.hover, "LSP hover")
 		map("n", "<leader>gd", vim.lsp.buf.definition, "Go to definition")
+		map("n", "<leader>gD", vim.lsp.buf.declaration, "Go to declaration")
+		map("n", "<leader>gr", function() require("telescope.builtin").lsp_references() end, "LSP references")
 		map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")
 		map("n", "<leader>im", vim.lsp.buf.implementation, "Go to implementation")
 		map("n", "<leader>r", vim.lsp.buf.rename, "Rename symbol")

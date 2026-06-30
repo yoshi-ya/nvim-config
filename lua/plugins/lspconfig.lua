@@ -28,7 +28,7 @@ return {
 				virtual_text = true,
 				signs = true,
 				underline = true,
-				update_in_insert = true,
+				update_in_insert = false,
 				severity_sort = true,
 			})
 
@@ -41,7 +41,6 @@ return {
 				"html",
 				"angularls",
 				"jsonls",
-				"jdtls",
 				"dockerls",
 				"docker_compose_language_service",
 				"lemminx",

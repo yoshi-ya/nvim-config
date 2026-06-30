@@ -9,6 +9,7 @@ return {
 
 	keys = {
 		{ "<leader>1", "<cmd>Neotree toggle<CR>", desc = "Toggle file tree" },
+		{ "<leader>e", "<cmd>Neotree filesystem reveal left<CR>", desc = "Reveal file in tree" },
 	},
 
 	config = function()
