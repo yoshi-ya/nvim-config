@@ -15,16 +15,12 @@ return {
 				html = { "prettier" },
 				css = { "prettier" },
 				markdown = { "prettier" },
-				java = { "google-java-format" }
+				java = { "google-java-format" },
+				xml = { "prettier" },
+				yaml = { "prettier" },
 			}
 		})
 
-		vim.keymap.set({ "n", "v" }, "<leader>f", function()
-			conform.format({
-				lsp_fallback = true,
-				async = false,
-				timeout_ms = 500
-			})
-		end)
+		-- Keymap is defined centrally in config/keymaps.lua
 	end,
 }

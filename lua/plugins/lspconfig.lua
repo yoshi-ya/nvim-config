@@ -16,6 +16,8 @@ return {
 				"jdtls",
 				"dockerls",
 				"docker_compose_language_service",
+				"lemminx",
+				"yamlls",
 			}
 		},
 	},
@@ -42,6 +44,8 @@ return {
 				"jdtls",
 				"dockerls",
 				"docker_compose_language_service",
+				"lemminx",
+				"yamlls",
 			}
 
 			for _, server in ipairs(servers) do
@@ -51,15 +55,7 @@ return {
 				vim.lsp.enable(server)
 			end
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
-			vim.keymap.set("n", "<leader>im", vim.lsp.buf.implementation, {})
-			vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {})
-			vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, {})
-			vim.keymap.set("n", "<leader>dn", function() vim.diagnostic.jump({ count = 1 }) end, { desc = "Next diagnostic" })
-			vim.keymap.set("n", "<leader>dp", function() vim.diagnostic.jump({ count = -1 }) end, { desc = "Prev diagnostic" })
-			vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+			-- All keymaps are defined centrally in config/keymaps.lua via LspAttach
 		end
 	}
 }

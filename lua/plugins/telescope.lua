@@ -25,12 +25,7 @@ return {
 
 			pcall(telescope.load_extension, "fzf")
 
-			local builtin = require("telescope.builtin")
-
-			vim.keymap.set("n", "<leader>p", builtin.find_files)
-			vim.keymap.set("n", "<leader><leader>", builtin.live_grep)
-			vim.keymap.set("n", "<leader>fb", builtin.buffers)
-			vim.keymap.set("n", "<leader>fh", builtin.help_tags)
+			-- Keymaps are defined centrally in config/keymaps.lua
 		end,
 	},
 	{
