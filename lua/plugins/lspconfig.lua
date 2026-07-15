@@ -1,8 +1,5 @@
 return {
-	{
-		"mason-org/mason.nvim",
-		opts = {}
-	},
+	{ "mason-org/mason.nvim", opts = {} },
 	{
 		"mason-org/mason-lspconfig.nvim",
 		opts = {
@@ -18,7 +15,12 @@ return {
 				"docker_compose_language_service",
 				"lemminx",
 				"yamlls",
-			}
+			},
+			handlers = {
+				function(server_name)
+					vim.lsp.enable(server_name)
+				end,
+			},
 		},
 	},
 	{
@@ -32,29 +34,9 @@ return {
 				severity_sort = true,
 			})
 
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			local servers = {
-				"lua_ls",
-				"pyright",
-				"ts_ls",
-				"html",
-				"angularls",
-				"jsonls",
-				"dockerls",
-				"docker_compose_language_service",
-				"lemminx",
-				"yamlls",
-			}
-
-			for _, server in ipairs(servers) do
-				vim.lsp.config(server, {
-					capabilities = capabilities,
-				})
-				vim.lsp.enable(server)
-			end
-
-			-- All keymaps are defined centrally in config/keymaps.lua via LspAttach
-		end
-	}
+			vim.lsp.config("*", {
+				capabilities = require("blink.cmp").get_lsp_capabilities(),
+			})
+		end,
+	},
 }
