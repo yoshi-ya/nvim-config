@@ -15,7 +15,6 @@ return {
 
 				-- linters (for nvim-lint)
 				"ruff",
-				"checkstyle",
 				"eslint_d",
 				"jsonlint",
 				"yamllint"

@@ -34,7 +34,26 @@ return {
 				severity_sort = true,
 			})
 
-			vim.lsp.config("*", {
+			vim.lsp.config("jdtls", {
+			settings = {
+				java = {
+					configuration = {
+						runtimes = {
+							{
+								name = "JavaSE-25",
+								path = "/opt/homebrew/Cellar/openjdk@25/25.0.3/libexec/openjdk.jdk/Contents/Home",
+								default = true,
+							},
+						},
+					},
+				},
+			},
+			init_options = {
+				workspace = vim.fn.expand("~/.cache/jdtls/workspaces/") .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
+			},
+		})
+
+		vim.lsp.config("*", {
 				capabilities = require("blink.cmp").get_lsp_capabilities(),
 			})
 		end,
