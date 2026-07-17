@@ -14,6 +14,9 @@ vim.keymap.set("n", "[c", function()
 	require("nvim-treesitter-textobjects.move").goto_previous_start("@class.outer", "textobjects")
 end, { desc = "Prev class start" })
 
+-- ─── Clipboard ───────────────────────────────────────────────────────────────
+vim.keymap.set("v", "<leader>y", '"+y', { desc = "Copy selection to system clipboard" })
+
 -- ─── Buffer Navigation ───────────────────────────────────────────────
 vim.keymap.set("n", "<Tab>", "<cmd>bnext<CR>", { silent = true })
 vim.keymap.set("n", "<S-Tab>", "<cmd>bprev<CR>", { silent = true })
