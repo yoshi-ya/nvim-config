@@ -1,5 +1,5 @@
 return {
-	'stevearc/conform.nvim',
+	"stevearc/conform.nvim",
 	event = { "BufReadPre", "BufNewFile" },
 
 	config = function()
@@ -19,9 +19,15 @@ return {
 				java = { "google-java-format" },
 				xml = { "prettier" },
 				yaml = { "prettier" },
-			}
+			},
 		})
 
-		-- Keymap is defined centrally in config/keymaps.lua
+		vim.keymap.set({ "n", "v" }, "<leader>f", function()
+			require("conform").format({
+				lsp_fallback = true,
+				async = false,
+				timeout_ms = 500,
+			})
+		end, { desc = "Format file or selection" })
 	end,
 }

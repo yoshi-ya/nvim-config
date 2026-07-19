@@ -26,6 +26,8 @@ return {
 			end,
 		})
 
-		-- Keymap is defined centrally in config/keymaps.lua
-	end
+		vim.keymap.set("n", "<leader>l", function()
+			require("lint").try_lint()
+		end, { desc = "Trigger linting for current file" })
+	end,
 }
