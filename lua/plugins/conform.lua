@@ -16,7 +16,6 @@ return {
 				html = { "prettier" },
 				css = { "prettier" },
 				markdown = { "prettier" },
-				java = { "google-java-format" },
 				xml = { "prettier" },
 				yaml = { "prettier" },
 			},
