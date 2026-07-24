@@ -74,7 +74,7 @@ return {
 					end, "LSP references")
 					map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")
 					map("n", "<leader>im", vim.lsp.buf.implementation, "Go to implementation")
-					map("n", "<leader>r", vim.lsp.buf.rename, "Rename symbol")
+					map("n", "<leader>cr", vim.lsp.buf.rename, "Rename symbol")
 					map("n", "<leader>lf", vim.lsp.buf.format, "LSP format")
 					map("n", "<leader>dn", function()
 						vim.diagnostic.jump({ count = 1 })

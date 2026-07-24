@@ -29,7 +29,7 @@ return {
 		pcall(telescope.load_extension, "fzf")
 		pcall(telescope.load_extension, "ui-select")
 
-		vim.keymap.set("n", "<leader>p", function()
+		vim.keymap.set("n", "<leader>ff", function()
 			require("telescope.builtin").find_files()
 		end, { desc = "Find files" })
 		vim.keymap.set("n", "<leader><leader>", function()
