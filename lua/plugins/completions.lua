@@ -8,7 +8,6 @@ return {
 		keymap = {
 			preset = "default",
 			["<Tab>"] = { "accept", "fallback" },
-			["<CR>"] = { "accept", "fallback" },
 		},
 		appearance = { nerd_font_variant = "mono" },
 		sources = {
