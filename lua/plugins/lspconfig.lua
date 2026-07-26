@@ -46,12 +46,34 @@ return {
 								},
 							},
 						},
+						completion = {
+							-- Import order: java → javax → org → com → others → static
+							importOrder = "java;javax;org;com;;#",
+						},
 					},
 				},
 				init_options = {
-					workspace = vim.fn.expand("~/.cache/jdtls/workspaces/")
-						.. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
+					workspace = vim.fn.expand("~/.cache/nvim/jdtls/workspace/")
+						.. (
+							vim.fn.fnamemodify(vim.uv.cwd() or "", ":t") --[[@as string]]
+						),
 				},
+				before_init = function(_, config)
+					local root = config.root_dir or ""
+					local xml = root .. "/.idea/eclipse-java-formatter.xml"
+					if vim.fn.filereadable(xml) == 1 then
+						config.settings = vim.tbl_deep_extend("force", config.settings or {}, {
+							java = {
+								format = {
+									settings = {
+										url = vim.uri_from_fname(xml),
+										profile = "Project",
+									},
+								},
+							},
+						})
+					end
+				end,
 			})
 
 			vim.lsp.config("*", {
@@ -73,6 +95,15 @@ return {
 						require("telescope.builtin").lsp_references()
 					end, "LSP references")
 					map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")
+					map("n", "<leader>co", function()
+						vim.lsp.buf.code_action({
+							context = { only = { "source.organizeImports" }, diagnostics = {} },
+							apply = true,
+							filter = function(action)
+								return action.kind == "source.organizeImports"
+							end,
+						})
+					end, "Organize imports")
 					map("n", "<leader>im", vim.lsp.buf.implementation, "Go to implementation")
 					map("n", "<leader>cr", vim.lsp.buf.rename, "Rename symbol")
 					map("n", "<leader>lf", vim.lsp.buf.format, "LSP format")

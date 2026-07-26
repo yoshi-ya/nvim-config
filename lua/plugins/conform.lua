@@ -22,10 +22,10 @@ return {
 		})
 
 		vim.keymap.set({ "n", "v" }, "<leader>cf", function()
-			require("conform").format({
+			conform.format({
 				lsp_fallback = true,
 				async = false,
-				timeout_ms = 500,
+				timeout_ms = vim.bo.filetype == "java" and 3000 or 500,
 			})
 		end, { desc = "Format file or selection" })
 	end,
