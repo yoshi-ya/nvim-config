@@ -46,7 +46,7 @@ return {
 		vim.keymap.set("n", "<leader>hn", function()
 			require("gitsigns").nav_hunk('next')
 		end, { desc = "Navigate to next hunk" })
-		vim.keymap.set("n", "<leader>hp", function()
+		vim.keymap.set("n", "<leader>hN", function()
 			require("gitsigns").nav_hunk('prev')
 		end, { desc = "Navigate to previous hunk" })
 	end,
