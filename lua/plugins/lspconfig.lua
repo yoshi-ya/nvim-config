@@ -15,6 +15,7 @@ return {
 				"docker_compose_language_service",
 				"lemminx",
 				"yamlls",
+                "marksman"
 			},
 			handlers = {
 				function(server_name)
