@@ -4,7 +4,7 @@ Yoshi's Neovim configuration, built on [lazy.nvim](https://github.com/folke/lazy
 
 ## Requirements
 
-- [Neovim](https://neovim.io/) ≥ 0.10
+- [Neovim](https://neovim.io/) ≥ 0.12
 - [Git](https://git-scm.com/)
 - A [Nerd Font](https://www.nerdfonts.com/) (for icons)
 
@@ -30,12 +30,21 @@ nvim
 
 LSP servers, formatters, and linters are managed by [Mason](https://github.com/mason-org/mason.nvim) and will be installed automatically.
 
+## Layout
+
+```
+lua/config/     options, global keymaps, lazy.nvim bootstrap
+lua/plugins/    one file per plugin spec
+lua/lsp/        LSP setup: server list, diagnostics, keymaps, Java helpers
+after/lsp/      per-server overrides, auto-merged by Neovim
+```
+
 ## Adding LSP Servers
 
-To permanently add an LSP server, add its name to the `ensure_installed` list in `lua/plugins/lspconfig.lua`. Mason will install it on next startup and enable it automatically.
+Add the server name to `lua/lsp/servers.lua`. Mason installs it on next startup and Neovim enables it automatically.
 
 ```lua
-ensure_installed = {
+return {
   "lua_ls",
   "your_new_server", -- add here
   ...
@@ -43,6 +52,12 @@ ensure_installed = {
 ```
 
 Browse available server names at [mason-registry.dev](https://mason-registry.dev/registry/list) or interactively with `:Mason` inside Neovim.
+
+To customize a server, create `after/lsp/<server>.lua` returning a config table — see `after/lsp/jdtls.lua`.
+
+## Java
+
+Java projects that ship an IntelliJ-exported `.idea/eclipse-java-formatter.xml` are formatted with that profile automatically. The JDK comes from `$JAVA_HOME`.
 
 ## Keymaps
 
@@ -58,6 +73,8 @@ Leader key: `<Space>`
 | `<leader>sh` | Split window horizontally |
 | `<leader>1` | Toggle file tree |
 | `<leader>e` | Reveal current file in tree |
+| `<leader>nf` / `<leader>Nf` | Next / previous function |
+| `<leader>nc` / `<leader>Nc` | Next / previous class |
 
 ### Search (Telescope)
 
@@ -67,30 +84,32 @@ Leader key: `<Space>`
 | `<leader><leader>` | Live grep |
 | `<leader>fb` | Find open buffers |
 | `<leader>fh` | Help tags |
+| `<leader>fd` | Workspace diagnostics |
 
 ### LSP
 
 | Key | Action |
 |-----|--------|
 | `K` | Hover documentation |
-| `<leader>gd` | Go to definition |
-| `<leader>gD` | Go to declaration |
-| `<leader>gr` | Find references |
-| `<leader>im` | Go to implementation |
+| `gd` | Go to definition |
+| `gD` | Go to declaration |
+| `gR` | Find references |
+| `gi` | Go to implementation |
+| `gt` | Go to type definition |
 | `<leader>ca` | Code action |
 | `<leader>co` | Organize imports |
-| `<leader>cr` | Rename symbol |
+| `<leader>rn` | Rename symbol |
+| `<leader>rs` | Restart LSP |
 | `<leader>cf` | Format file / selection |
 | `<leader>cl` | Trigger linting |
-| `<leader>lf` | LSP format |
 
 ### Diagnostics
 
 | Key | Action |
 |-----|--------|
-| `<leader>dn` / `<leader>dp` | Next / previous diagnostic |
-| `<leader>de` | Show diagnostic float |
-| `<leader>ds` | Workspace diagnostics (Telescope) |
+| `<leader>nd` / `<leader>Nd` | Next / previous diagnostic |
+| `<leader>d` | Show line diagnostics |
+| `<leader>D` | Buffer diagnostics (Telescope) |
 | `<leader>xx` | Workspace diagnostics (Trouble) |
 | `<leader>xb` | Buffer diagnostics (Trouble) |
 | `<leader>xs` | Symbols (Trouble) |
@@ -102,6 +121,7 @@ Leader key: `<Space>`
 | `<leader>hp` | Preview hunk |
 | `<leader>hs` | Stage hunk |
 | `<leader>hr` | Reset hunk |
+| `<leader>hR` | Reset buffer |
 | `<leader>hb` | Blame line |
 | `<leader>hn` / `<leader>hN` | Next / previous hunk |
 

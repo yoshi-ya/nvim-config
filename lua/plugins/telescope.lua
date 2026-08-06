@@ -4,6 +4,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-telescope/telescope-ui-select.nvim",
+        "nvim-tree/nvim-web-devicons",
 	},
 
 	config = function()
@@ -41,7 +42,7 @@ return {
 		vim.keymap.set("n", "<leader>fh", function()
 			require("telescope.builtin").help_tags()
 		end, { desc = "Help tags" })
-		vim.keymap.set("n", "<leader>ds", function()
+		vim.keymap.set("n", "<leader>fd", function()
 			require("telescope.builtin").diagnostics()
 		end, { desc = "Workspace diagnostics" })
 	end,
