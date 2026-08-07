@@ -5,8 +5,16 @@ return {
 		java = {
 			-- No `configuration.runtimes`: jdtls compiles with the JDK from $JAVA_HOME (jenv).
 			completion = {
-				-- Import order: java → javax → org → com → others → static
-				importOrder = "java;javax;org;com;;#",
+				-- Import order groups, blank line between each. "#" is the static block.
+				importOrder = { "#", "java", "javax", "org", "com" },
+			},
+			sources = {
+				organizeImports = {
+					-- Match IntelliJ: collapse a package into `.*` only from 3 static
+					-- members up; never collapse regular type imports.
+					starThreshold = 99,
+					staticStarThreshold = 3,
+				},
 			},
 		},
 	},
