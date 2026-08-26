@@ -3,12 +3,15 @@ return {
 	dependencies = {
 		"preservim/vimux",
 	},
-	config = function()
-		vim.keymap.set("n", "<leader>tn", ":TestNearest<CR>", { desc = "Test nearest" })
-		vim.keymap.set("n", "<leader>tf", ":TestFile<CR>", { desc = "Test file" })
-		vim.keymap.set("n", "<leader>ta", ":TestSuite<CR>", { desc = "Test suite (all)" })
-		vim.keymap.set("n", "<leader>tl", ":TestLast<CR>", { desc = "Test last" })
-		vim.keymap.set("n", "<leader>tv", ":TestVisit<CR>", { desc = "Test visit" })
-		vim.cmd("let test#strategy = 'vimux'")
+	keys = {
+		{ "<leader>tn", "<cmd>TestNearest<CR>", desc = "Test nearest" },
+		{ "<leader>tf", "<cmd>TestFile<CR>", desc = "Test file" },
+		{ "<leader>ta", "<cmd>TestSuite<CR>", desc = "Test suite (all)" },
+		{ "<leader>tl", "<cmd>TestLast<CR>", desc = "Test last" },
+		{ "<leader>tv", "<cmd>TestVisit<CR>", desc = "Test visit" },
+	},
+	init = function()
+		-- Run tests in a tmux pane via vimux.
+		vim.g["test#strategy"] = "vimux"
 	end,
 }

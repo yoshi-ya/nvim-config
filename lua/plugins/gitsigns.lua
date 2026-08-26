@@ -1,53 +1,33 @@
 return {
 	"lewis6991/gitsigns.nvim",
 	event = { "BufReadPre", "BufNewFile" },
-
-	config = function()
-		require("gitsigns").setup({
-			signs = {
-				add = { text = "│" },
-				change = { text = "│" },
-				delete = { text = "▸" },
-				topdelete = { text = "▸" },
-				changedelete = { text = "│" },
-				untracked = { text = "┆" },
-			},
-			signs_staged = {
-				add = { text = "│" },
-				change = { text = "│" },
-				delete = { text = "▸" },
-				topdelete = { text = "▸" },
-				changedelete = { text = "│" },
-			},
-			current_line_blame = false,
-		})
-
-		vim.keymap.set("n", "<leader>hp", function()
-			require("gitsigns").preview_hunk()
-		end, { desc = "Preview hunk" })
-		vim.keymap.set("n", "<leader>hi", function()
-			require("gitsigns").preview_hunk_inline()
-		end, { desc = "Preview hunk" })
-		vim.keymap.set("n", "<leader>hs", function()
-			require("gitsigns").stage_hunk()
-		end, { desc = "Stage hunk" })
-		vim.keymap.set("n", "<leader>hb", function()
-			require("gitsigns").blame_line()
-		end, { desc = "Blame line" })
-		vim.keymap.set("n", "<leader>hr", function()
-			require("gitsigns").reset_hunk()
-		end, { desc = "Reset hunk" })
-		vim.keymap.set("v", "<leader>hr", function()
-			require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-		end, { desc = "Reset selected hunks" })
-		vim.keymap.set("n", "<leader>hR", function()
-			require("gitsigns").reset_buffer()
-		end, { desc = "Reset buffer" })
-		vim.keymap.set("n", "<leader>hn", function()
-			require("gitsigns").nav_hunk('next')
-		end, { desc = "Navigate to next hunk" })
-		vim.keymap.set("n", "<leader>hN", function()
-			require("gitsigns").nav_hunk('prev')
-		end, { desc = "Navigate to previous hunk" })
-	end,
+	keys = {
+		{ "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>", desc = "Preview hunk" },
+		{ "<leader>hi", "<cmd>Gitsigns preview_hunk_inline<CR>", desc = "Preview hunk inline" },
+		{ "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>", desc = "Stage hunk" },
+		{ "<leader>hb", "<cmd>Gitsigns blame_line<CR>", desc = "Blame line" },
+		{ "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>", desc = "Reset hunk" },
+		{ "<leader>hr", ":Gitsigns reset_hunk<CR>", mode = "v", desc = "Reset selected hunks" },
+		{ "<leader>hR", "<cmd>Gitsigns reset_buffer<CR>", desc = "Reset buffer" },
+		{ "<leader>hn", "<cmd>Gitsigns nav_hunk next<CR>", desc = "Navigate to next hunk" },
+		{ "<leader>hN", "<cmd>Gitsigns nav_hunk prev<CR>", desc = "Navigate to previous hunk" },
+	},
+	opts = {
+		signs = {
+			add = { text = "│" },
+			change = { text = "│" },
+			delete = { text = "▸" },
+			topdelete = { text = "▸" },
+			changedelete = { text = "│" },
+			untracked = { text = "┆" },
+		},
+		signs_staged = {
+			add = { text = "│" },
+			change = { text = "│" },
+			delete = { text = "▸" },
+			topdelete = { text = "▸" },
+			changedelete = { text = "│" },
+		},
+		current_line_blame = false,
+	},
 }

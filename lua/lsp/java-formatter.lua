@@ -1,4 +1,4 @@
--- Path (relative to the project root) of the IntelliJ-exported Eclipse formatter profile.dia
+-- Path (relative to the project root) of the IntelliJ-exported Eclipse formatter profile.
 local FORMATTER_XML = { ".idea", "eclipse-java-formatter.xml" }
 
 -- Profile name inside the exported XML. IntelliJ writes its scheme under "Project".

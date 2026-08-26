@@ -6,20 +6,16 @@ return {
 		"MunifTanjim/nui.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
-
 	keys = {
 		{ "<leader>1", "<cmd>Neotree toggle<CR>", desc = "Toggle file tree" },
 		{ "<leader>e", "<cmd>Neotree filesystem reveal left<CR>", desc = "Reveal file in tree" },
 	},
-
-	config = function()
-		require("neo-tree").setup({
-			close_if_last_window = true,
-			filesystem = {
-				follow_current_file = {
-					enabled = true,
-				},
+	opts = {
+		close_if_last_window = true,
+		filesystem = {
+			follow_current_file = {
+				enabled = true,
 			},
-		})
-	end
+		},
+	},
 }

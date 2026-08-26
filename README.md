@@ -33,11 +33,20 @@ LSP servers, formatters, and linters are managed by [Mason](https://github.com/m
 ## Layout
 
 ```
-lua/config/     options, global keymaps, lazy.nvim bootstrap
-lua/plugins/    one file per plugin spec
-lua/lsp/        LSP setup: server list, diagnostics, keymaps, Java helpers
-after/lsp/      per-server overrides, auto-merged by Neovim
+init.lua                  requires only, in load order
+stylua.toml               formatting rules (tabs, double quotes)
+lua/config/options.lua    leader keys, vim.g / vim.env / vim.opt
+lua/config/autocmds.lua   global autocmds
+lua/config/keymaps.lua    global keymaps (plugin keymaps live with their plugin)
+lua/config/lazy.lua       lazy.nvim bootstrap
+lua/plugins/              one file per plugin spec
+lua/lsp/                  LSP setup: server list, diagnostics, keymaps, Java helpers
+after/lsp/                per-server overrides, auto-merged by Neovim
 ```
+
+Files under `lua/config/` are side-effect scripts and return nothing.
+Files under `lua/lsp/` are modules that return a table with a `setup()` function.
+Each plugin spec declares its own keymaps in a lazy.nvim `keys = {}` block, so they lazy-load with the plugin and register with which-key automatically.
 
 ## Adding LSP Servers
 
@@ -75,6 +84,8 @@ Leader key: `<Space>`
 | `<leader>e` | Reveal current file in tree |
 | `<leader>nf` / `<leader>Nf` | Next / previous function |
 | `<leader>nc` / `<leader>Nc` | Next / previous class |
+| `<C-h>` / `<C-j>` / `<C-k>` / `<C-l>` | Move to window or tmux pane in that direction |
+| `<C-\>` | Move to previous window or tmux pane |
 
 ### Search (Telescope)
 
@@ -113,12 +124,15 @@ Leader key: `<Space>`
 | `<leader>xx` | Workspace diagnostics (Trouble) |
 | `<leader>xb` | Buffer diagnostics (Trouble) |
 | `<leader>xs` | Symbols (Trouble) |
+| `<leader>xl` | LSP definitions / references (Trouble) |
+| `<leader>xq` | Quickfix list (Trouble) |
 
 ### Git (Gitsigns)
 
 | Key | Action |
 |-----|--------|
 | `<leader>hp` | Preview hunk |
+| `<leader>hi` | Preview hunk inline |
 | `<leader>hs` | Stage hunk |
 | `<leader>hr` | Reset hunk |
 | `<leader>hR` | Reset buffer |
@@ -133,9 +147,11 @@ Leader key: `<Space>`
 | `<leader>tf` | Test file |
 | `<leader>ta` | Test suite |
 | `<leader>tl` | Test last |
+| `<leader>tv` | Open the file under test |
 
 ### Misc
 
 | Key | Action |
 |-----|--------|
 | `<leader>y` | Copy selection to system clipboard |
+| `<leader>nh` | Clear search highlights |

@@ -1,3 +1,5 @@
+local keymap = vim.keymap
+
 local M = {}
 
 --- Lazily-required Telescope picker, so the keymap does not load Telescope on attach.
@@ -13,7 +15,7 @@ end
 ---@param buf integer
 local function on_attach(buf)
 	local map = function(modes, lhs, rhs, desc)
-		vim.keymap.set(modes, lhs, rhs, { buffer = buf, desc = desc })
+		keymap.set(modes, lhs, rhs, { buffer = buf, desc = desc })
 	end
 
 	map("n", "K", vim.lsp.buf.hover, "Show documentation for what is under cursor")
