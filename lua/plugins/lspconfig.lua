@@ -16,6 +16,7 @@ return {
 		config = function()
 			require("lsp.diagnostics").setup()
 			require("lsp.keymaps").setup()
+			require("lsp.document-highlight").setup()
 
 			vim.lsp.config("*", {
 				capabilities = require("blink.cmp").get_lsp_capabilities(),

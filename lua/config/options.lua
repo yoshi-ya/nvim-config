@@ -20,3 +20,9 @@ vim.opt.expandtab = true
 -- Line numbers: absolute on the cursor line, relative elsewhere.
 vim.opt.number = true
 vim.opt.relativenumber = true
+
+-- Highlight current line
+vim.opt.cursorline = true
+
+-- Drive CursorHold (LSP document highlight) instead of the 4s default.
+vim.opt.updatetime = 250
