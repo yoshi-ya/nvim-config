@@ -40,7 +40,7 @@ lua/config/autocmds.lua   global autocmds
 lua/config/keymaps.lua    global keymaps (plugin keymaps live with their plugin)
 lua/config/lazy.lua       lazy.nvim bootstrap
 lua/plugins/              one file per plugin spec
-lua/lsp/                  LSP setup: server list, diagnostics, keymaps, Java helpers
+lua/lsp/                  LSP setup: server list, diagnostics, keymaps, document highlight, Java helpers
 after/lsp/                per-server overrides, auto-merged by Neovim
 ```
 
@@ -64,6 +64,24 @@ Browse available server names at [mason-registry.dev](https://mason-registry.dev
 
 To customize a server, create `after/lsp/<server>.lua` returning a config table — see `after/lsp/jdtls.lua`.
 
+## Formatting and Linting
+
+Formatting runs on demand with `<leader>cf` via [conform.nvim](https://github.com/stevearc/conform.nvim), never on save.
+Linting runs automatically on `BufEnter`, `BufWritePost`, and `InsertLeave` via [nvim-lint](https://github.com/mfussenegger/nvim-lint), and on demand with `<leader>cl`.
+
+| Filetype | Formatter | Linter |
+|----------|-----------|--------|
+| Lua | `stylua` | - |
+| Python | `isort`, `black` | `ruff` |
+| JavaScript / TypeScript (+ JSX/TSX) | `prettier` | `eslint_d` |
+| JSON | `prettier` | `jsonlint` |
+| YAML | `prettier` | `yamllint` |
+| HTML / CSS / Markdown / XML | `prettier` | - |
+| Java | `google-java-format` (see below) | - |
+
+Tools are declared in `lua/plugins/mason-tool-installer.lua` and installed by Mason on startup.
+`prettier` is not in that list, so it has to be on `$PATH` yourself (for example `npm i -g prettier`); without it, conform falls back to the LSP formatter.
+
 ## Java
 
 Java projects that ship an IntelliJ-exported `.idea/eclipse-java-formatter.xml` are formatted with that profile automatically. The JDK comes from `$JAVA_HOME`.
@@ -86,6 +104,14 @@ Leader key: `<Space>`
 | `<leader>nc` / `<leader>Nc` | Next / previous class |
 | `<C-h>` / `<C-j>` / `<C-k>` / `<C-l>` | Move to window or tmux pane in that direction |
 | `<C-\>` | Move to previous window or tmux pane |
+
+### Completion (blink.cmp)
+
+| Key | Action |
+|-----|--------|
+| `<Tab>` | Accept completion (falls back to next buffer when no menu is open) |
+
+Sources: LSP, path, snippets, buffer, and emoji (`:` prefix).
 
 ### Search (Telescope)
 
