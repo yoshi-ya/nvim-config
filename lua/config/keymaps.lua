@@ -16,3 +16,6 @@ keymap.set("n", "<leader>nh", "<cmd>nohlsearch<CR>", { desc = "Clear search high
 
 -- Clipboard
 keymap.set("v", "<leader>y", '"+y', { desc = "Copy selection to system clipboard" })
+
+-- Symbols
+keymap.set("i", "<leader>we", "✓", { desc = "Write a check mark ✓" })
