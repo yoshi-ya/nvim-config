@@ -7,6 +7,7 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	cmd = "Telescope",
+	event = "VeryLazy",
 	keys = {
 		{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find files" },
 		{ "<leader><leader>", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
