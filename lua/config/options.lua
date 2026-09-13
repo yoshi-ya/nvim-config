@@ -24,8 +24,8 @@ vim.opt.relativenumber = true
 -- Highlight current line
 vim.opt.cursorline = true
 
--- 2 cells wide so diagnostic sign glyphs render at full size, not squeezed.
-vim.opt.signcolumn = "yes:2"
+-- Single cell: diagnostic sign (priority 10) wins over gitsigns (priority 6) when both present.
+vim.opt.signcolumn = "yes:1"
 
 -- Drive CursorHold (LSP document highlight) instead of the 4s default.
 vim.opt.updatetime = 250

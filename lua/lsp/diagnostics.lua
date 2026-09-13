@@ -6,9 +6,9 @@ function M.setup()
 		virtual_text = true,
 		signs = {
 			text = {
-				[vim.diagnostic.severity.ERROR] = "",
-				[vim.diagnostic.severity.WARN] = "",
-				[vim.diagnostic.severity.INFO] = "",
+				[vim.diagnostic.severity.ERROR] = "█",
+				[vim.diagnostic.severity.WARN] = "█",
+				[vim.diagnostic.severity.INFO] = "i",
 				[vim.diagnostic.severity.HINT] = "",
 			},
 		},
