@@ -82,10 +82,6 @@ Linting runs automatically on `BufEnter`, `BufWritePost`, and `InsertLeave` via 
 Tools are declared in `lua/plugins/mason-tool-installer.lua` and installed by Mason on startup.
 `prettier` is not in that list, so it has to be on `$PATH` yourself (for example `npm i -g prettier`); without it, conform falls back to the LSP formatter.
 
-## Java
-
-Java projects that ship an IntelliJ-exported `.idea/eclipse-java-formatter.xml` are formatted with that profile automatically. The JDK comes from `$JAVA_HOME`.
-
 ## Keymaps
 
 Leader key: `<Space>`

@@ -7,7 +7,6 @@ return {
 	"html",
 	"angularls",
 	"jsonls",
-	"jdtls",
 	"dockerls",
 	"docker_compose_language_service",
 	"lemminx",
