@@ -47,6 +47,13 @@ local function on_attach(buf)
 	map("n", "<leader>Nd", function()
 		vim.diagnostic.jump({ count = -1, float = true })
 	end, "Go to previous diagnostic")
+
+	map("n", "<leader>dq", function()
+		vim.diagnostic.setqflist()
+	end, "Send all diagnostics to quickfix")
+	map("n", "<leader>dl", function()
+		vim.diagnostic.setloclist()
+	end, "Send buffer diagnostics to loclist")
 end
 
 --- Apply the keymaps to every buffer an LSP client attaches to.

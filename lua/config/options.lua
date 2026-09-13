@@ -24,5 +24,11 @@ vim.opt.relativenumber = true
 -- Highlight current line
 vim.opt.cursorline = true
 
+-- 2 cells wide so diagnostic sign glyphs render at full size, not squeezed.
+vim.opt.signcolumn = "yes:2"
+
 -- Drive CursorHold (LSP document highlight) instead of the 4s default.
 vim.opt.updatetime = 250
+
+-- Faster leader-sequence timeout (default 1000ms feels laggy with deep <leader> maps).
+vim.opt.timeoutlen = 300

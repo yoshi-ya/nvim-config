@@ -9,6 +9,7 @@ return {
 			neo_tree = true,
 			cmp = true,
 			treesitter = true,
+			gitsigns = true,
 		},
 	},
 	config = function(_, opts)
