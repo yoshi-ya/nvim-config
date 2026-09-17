@@ -13,6 +13,7 @@ return {
 		{ "<leader><leader>", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
 		{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find buffers" },
 		{ "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help tags" },
+		{ "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Find recent files" },
 		{ "<leader>fd", "<cmd>Telescope diagnostics<CR>", desc = "Workspace diagnostics" },
 	},
 	config = function()
